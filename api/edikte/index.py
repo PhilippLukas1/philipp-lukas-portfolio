@@ -3,14 +3,10 @@ import json
 import os
 import sys
 
-# Ensure dependencies are available (Vercel installs them, but good practice)
-try:
-    import requests
-    from bs4 import BeautifulSoup
-    from difflib import SequenceMatcher
-except ImportError:
-    # Fallback for dev environment if not installed
-    pass
+# Ensure dependencies are available
+import requests
+from bs4 import BeautifulSoup
+from difflib import SequenceMatcher
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):

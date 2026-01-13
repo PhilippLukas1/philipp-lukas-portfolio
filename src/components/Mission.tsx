@@ -12,7 +12,7 @@ export const Mission = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                 >
-                    &quot;Neugier als Antrieb – KI als Werkzeug für greifbare Lösungen.&quot;
+                    &quot;Die Grenzen des Machbaren verschieben und sich dabei stetig weiterentwickeln.&quot;
                 </motion.h2>
 
                 <div className="space-y-12 text-gray-300 leading-relaxed font-light">

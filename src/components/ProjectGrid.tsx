@@ -5,21 +5,24 @@ import { ArrowUpRight, Cpu, Globe, Rocket } from "lucide-react";
 import { useState } from "react";
 import { IFrameModal } from "./IFrameModal";
 
+import EdikteChecker from "./EdikteChecker";
+
 const projects = [
     {
         id: 1,
+        title: "Edikte Checker",
+        description: "Automatisierter Abgleich von Gerichtsedikten mit Stammbaumdaten.",
+        icon: <Cpu size={24} />,
+        color: "from-blue-400 to-purple-600",
+        url: "",
+        component: <EdikteChecker />,
+    },
+    {
+        id: 2,
         title: "EcoAgent One",
         description: "Autonomous agent for energy optimization.",
         icon: <Globe size={24} />,
         color: "from-green-400 to-emerald-600",
-        url: "", // Empty for "Coming Soon"
-    },
-    {
-        id: 2,
-        title: "Neural Stream",
-        description: "Real-time data processing pipeline.",
-        icon: <Cpu size={24} />,
-        color: "from-blue-400 to-indigo-600",
         url: "",
     },
     {
@@ -80,7 +83,9 @@ export const ProjectGrid = () => {
                 onClose={() => setSelectedProject(null)}
                 title={selectedProject?.title || ""}
                 url={selectedProject?.url}
-            />
+            >
+                {selectedProject?.component}
+            </IFrameModal>
         </section>
     );
 };

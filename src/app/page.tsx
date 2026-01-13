@@ -1,5 +1,4 @@
 import { Background } from "@/components/Background";
-import EdikteChecker from "@/components/EdikteChecker";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
 import { Mission } from "@/components/Mission";
@@ -13,7 +12,6 @@ export default function Home() {
       <Hero />
       <Mission />
       <ProjectGrid />
-      <EdikteChecker />
       <Resume />
       <Footer />
     </main>

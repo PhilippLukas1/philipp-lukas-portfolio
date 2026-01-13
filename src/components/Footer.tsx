@@ -5,10 +5,10 @@ export const Footer = () => {
                 © {new Date().getFullYear()} Philipp Lukas. All rights reserved.
             </p>
             <a
-                href="#"
+                href="mailto:philipplukas@outlook.at"
                 className="inline-block px-6 py-2 border border-accent-orange/30 rounded-full text-accent-orange hover:bg-accent-orange hover:text-white transition-all duration-300 font-sans text-sm tracking-wide"
             >
-                Contact
+                Contact via Email
             </a>
         </footer>
     );

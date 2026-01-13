@@ -41,7 +41,7 @@ export default function EdikteChecker() {
     };
 
     return (
-        <section className="py-12 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-8 shadow-2xl">
+        <div className="w-full max-w-4xl mx-auto">
             <div className="flex flex-col md:flex-row justify-between items-center mb-6">
                 <div>
                     <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500">
@@ -121,6 +121,6 @@ export default function EdikteChecker() {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </section>
+        </div>
     );
 }
