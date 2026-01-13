@@ -7,6 +7,7 @@ interface Match {
     ediktName: string;
     stammbaumName: string;
     similarity: number;
+    url?: string;
 }
 
 interface ApiResponse {
@@ -51,18 +52,22 @@ export default function EdikteChecker() {
                         Dieses Tool automatisiert die Suche nach unbekannten Erben in Österreich. Es überwacht täglich die amtliche Ediktsdatei der Justiz auf unbeanspruchte Verlassenschaften und gleicht diese mit lokalen Stammbaumdaten ab, um potenzielle Erbansprüche frühzeitig zu identifizieren.
                     </p>
 
-                    <div className="mt-6 flex flex-wrap gap-2">
+                    <div className="mt-6 flex flex-wrap gap-2 mb-6">
                         <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs border border-blue-500/30">Python Backend</span>
                         <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs border border-blue-500/30">BeautifulSoup Scraper</span>
                         <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs border border-blue-500/30">Vercel Serverless</span>
                         <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs border border-blue-500/30">Fuzzy Logic Matching</span>
+                    </div>
+
+                    <div className="bg-yellow-500/10 border border-yellow-500/20 p-4 rounded-lg text-sm text-yellow-200/80 mb-6">
+                        <strong>Hinweis:</strong> Aktuell dient dieses Tool nur dem persönlichen Gebrauch und bezieht sich ausschließlich auf meinen eigenen Stammbaum. Eine Erweiterung bzw. Schnittstelle zu Family Tree Maker ist in Planung.
                     </div>
                 </div>
 
                 <button
                     onClick={checkEdikte}
                     disabled={loading}
-                    className="mt-4 md:mt-0 px-6 py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 text-white font-semibold rounded-lg transition-all shadow-lg hover:shadow-blue-500/20 active:scale-95"
+                    className="mt-4 md:mt-0 px-6 py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 text-white font-semibold rounded-lg transition-all shadow-lg hover:shadow-blue-500/20 active:scale-95 flex-shrink-0"
                 >
                     {loading ? (
                         <span className="flex items-center gap-2">
@@ -104,10 +109,19 @@ export default function EdikteChecker() {
                                 </div>
                                 <div className="grid gap-3">
                                     {data.matches.map((match, idx) => (
-                                        <div key={idx} className="bg-white/5 p-4 rounded-lg border border-white/10 hover:border-white/20 transition-colors">
+                                        <a
+                                            key={idx}
+                                            href={match.url || "#"}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={`block bg-white/5 p-4 rounded-lg border border-white/10 transition-all ${match.url ? "hover:border-blue-400/50 hover:bg-white/10 cursor-pointer group" : ""}`}
+                                        >
                                             <div className="flex justify-between items-start">
                                                 <div>
-                                                    <div className="text-lg font-semibold text-white">{match.ediktName}</div>
+                                                    <div className="text-lg font-semibold text-white group-hover:text-blue-300 transition-colors flex items-center gap-2">
+                                                        {match.ediktName}
+                                                        {match.url && <svg className="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>}
+                                                    </div>
                                                     <div className="text-sm text-gray-400 mt-1">
                                                         &approx; {match.stammbaumName}
                                                     </div>
@@ -116,7 +130,7 @@ export default function EdikteChecker() {
                                                     {Math.round(match.similarity * 100)}% Match
                                                 </div>
                                             </div>
-                                        </div>
+                                        </a>
                                     ))}
                                 </div>
                             </div>

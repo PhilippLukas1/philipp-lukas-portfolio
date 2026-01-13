@@ -25,18 +25,38 @@ class handler(BaseHTTPRequestHandler):
 
             # --- Step 1: Fetch Edikte ---
             names = []
+            links = {} # Map name -> url
+            
             response = requests.get(EDIKTE_URL)
             soup = BeautifulSoup(response.text, 'html.parser')
 
-            for td in soup.find_all('td'):
-                text = td.get_text(strip=True)
-                if (
-                    "," in text and
-                    not text.startswith("BG") and
-                    not text.startswith("Aufruf") and
-                    len(text.split(",")) == 2
-                ):
-                    names.append(text)
+            rows = soup.find_all('tr')
+            for tr in rows:
+                tds = tr.find_all('td')
+                # We need at least a few columns to be a valid data row
+                if len(tds) < 2:
+                    continue
+                
+                # Check for link in the first column (standard Edikte format)
+                current_url = ""
+                a_tag = tds[0].find('a')
+                if a_tag and a_tag.get('href'):
+                    # efficient join instead of +
+                    current_url = f"https://edikte.justiz.gv.at/edikte/ku/vledi02.nsf/{a_tag.get('href')}"
+
+                # Check columns for Name format "Surname, Givenname"
+                for td in tds:
+                    text = td.get_text(strip=True)
+                    if (
+                        "," in text and
+                        not text.startswith("BG") and
+                        not text.startswith("Aufruf") and
+                        len(text.split(",")) == 2
+                    ):
+                        names.append(text)
+                        if current_url:
+                            links[text] = current_url
+                        break # Found the name in this row
             
             # --- Step 2: Load Stammbaum ---
             stammbaum = []
@@ -62,7 +82,8 @@ class handler(BaseHTTPRequestHandler):
                         matches.append({
                             "ediktName": name_edikt,
                             "stammbaumName": name_stamm,
-                            "similarity": round(ratio, 2)
+                            "similarity": round(ratio, 2),
+                            "url": links.get(name_edikt, "")
                         })
 
             # --- Step 4: Return JSON ---
