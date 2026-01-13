@@ -44,11 +44,11 @@ export default function EdikteChecker() {
         <section className="py-12 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-8 shadow-2xl">
             <div className="flex flex-col md:flex-row justify-between items-center mb-6">
                 <div>
-                    <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+                    <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500">
                         Edikte Checker
                     </h2>
-                    <p className="text-gray-400 mt-2 text-sm">
-                        Gleicht automatisch aktuelle Gerichtsedikte mit der lokalen Stammbaum-Datenbank ab.
+                    <p className="text-gray-300 mt-3 text-base leading-relaxed max-w-2xl">
+                        Ein praktisches Beispiel für KI-gestützte Prozessoptimierung: Dieses Tool scannt täglich die österreichische Justiz-Ediktsdatei und gleicht sie vollautomatisch mit einem lokalen Stammbaum ab. Es demonstriert, wie manuelle Recherche durch intelligente Automatisierung ersetzt werden kann.
                     </p>
                 </div>
 

@@ -14,7 +14,20 @@ const readexPro = Readex_Pro({
 
 export const metadata: Metadata = {
   title: "Philipp Lukas | AI Solutions",
-  description: "Portfolio of Philipp Lukas - Innovative AI Projects.",
+  description: "Portfolio of Philipp Lukas - Innovative AI Projects. Showcasing the intersection of curiosity and artificial intelligence.",
+  openGraph: {
+    title: "Philipp Lukas | AI Solutions",
+    description: "Portfolio of Philipp Lukas - Innovative AI Projects. Featuring the Edikte Checker and more.",
+    url: "https://philipplukas.space",
+    siteName: "Philipp Lukas Portfolio",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Philipp Lukas | AI Solutions",
+    description: "Turning complex ideas into functional reality with AI.",
+  },
 };
 
 export default function RootLayout({
