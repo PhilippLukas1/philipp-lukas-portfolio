@@ -48,8 +48,15 @@ export default function EdikteChecker() {
                         Edikte Checker
                     </h2>
                     <p className="text-gray-300 mt-3 text-base leading-relaxed max-w-2xl">
-                        Ein praktisches Beispiel für KI-gestützte Prozessoptimierung: Dieses Tool scannt täglich die österreichische Justiz-Ediktsdatei und gleicht sie vollautomatisch mit einem lokalen Stammbaum ab. Es demonstriert, wie manuelle Recherche durch intelligente Automatisierung ersetzt werden kann.
+                        Dieses Tool automatisiert die Suche nach unbekannten Erben in Österreich. Es überwacht täglich die amtliche Ediktsdatei der Justiz auf unbeanspruchte Verlassenschaften und gleicht diese mit lokalen Stammbaumdaten ab, um potenzielle Erbansprüche frühzeitig zu identifizieren.
                     </p>
+
+                    <div className="mt-6 flex flex-wrap gap-2">
+                        <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs border border-blue-500/30">Python Backend</span>
+                        <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs border border-blue-500/30">BeautifulSoup Scraper</span>
+                        <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs border border-blue-500/30">Vercel Serverless</span>
+                        <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs border border-blue-500/30">Fuzzy Logic Matching</span>
+                    </div>
                 </div>
 
                 <button

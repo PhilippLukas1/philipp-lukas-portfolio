@@ -19,19 +19,21 @@ const projects = [
     },
     {
         id: 2,
-        title: "EcoAgent One",
-        description: "Autonomous agent for energy optimization.",
+        title: "iRacing AI Livery Designer",
+        description: "Generative AI für individuelle Rennwagen-Designs. (In Construction)",
         icon: <Globe size={24} />,
         color: "from-green-400 to-emerald-600",
         url: "",
+        isConstruction: true,
     },
     {
         id: 3,
-        title: "Vision Core",
-        description: "Next-gen computer vision interface.",
+        title: "AI Pope App",
+        description: "Spirituelle KI-Begleitung. (In Construction)",
         icon: <Rocket size={24} />,
         color: "from-purple-400 to-pink-600",
         url: "",
+        isConstruction: true,
     },
 ];
 
@@ -67,11 +69,17 @@ export const ProjectGrid = () => {
                             </div>
 
                             <button
-                                onClick={() => setSelectedProject(project)}
-                                className="flex items-center gap-2 text-accent-orange font-bold uppercase tracking-wider text-sm group/btn"
+                                onClick={() => !project.isConstruction && setSelectedProject(project)}
+                                disabled={project.isConstruction}
+                                className={`flex items-center gap-2 font-bold uppercase tracking-wider text-sm group/btn transition-colors ${project.isConstruction
+                                        ? "text-gray-500 cursor-not-allowed"
+                                        : "text-accent-orange hover:text-white"
+                                    }`}
                             >
-                                Launch App
-                                <ArrowUpRight size={16} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+                                {project.isConstruction ? "Coming Soon" : "Launch App"}
+                                {!project.isConstruction && (
+                                    <ArrowUpRight size={16} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+                                )}
                             </button>
                         </div>
                     </motion.div>
