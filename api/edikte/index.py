@@ -37,12 +37,22 @@ class handler(BaseHTTPRequestHandler):
                 if len(tds) < 2:
                     continue
                 
-                # Check for link in the first column (standard Edikte format)
+                # Robustly find the case link in the row
+                # It's usually in the first column (File Number), but let's search specifically for the content link
                 current_url = ""
-                a_tag = tds[0].find('a')
-                if a_tag and a_tag.get('href'):
-                    # efficient join instead of +
-                    current_url = f"https://edikte.justiz.gv.at/edikte/ku/vledi02.nsf/{a_tag.get('href')}"
+                
+                # Find first anchor in the row that looks like a case link (usually containing 'alldoc')
+                for a_tag in tr.find_all('a'):
+                    href = a_tag.get('href')
+                    if href and "alldoc" in href:
+                         current_url = f"https://edikte.justiz.gv.at/edikte/ku/vledi02.nsf/{href}"
+                         break
+                
+                # Fallback: If no 'alldoc' link, take the first link that isn't empty
+                if not current_url:
+                     a_tag = tr.find('a')
+                     if a_tag and a_tag.get('href'):
+                         current_url = f"https://edikte.justiz.gv.at/edikte/ku/vledi02.nsf/{a_tag.get('href')}"
 
                 # Check columns for Name format "Surname, Givenname"
                 for td in tds:
